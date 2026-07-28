@@ -1,0 +1,9 @@
+RF01 - Autenticação de Usuários: O sistema deve permitir login de usuários com validação de e-mail e senha.
+RF02 - Redirecionamento e Mensagem de Erro: O sistema deve exibir mensagem em caso de falha de login e permitir nova tentativa.
+RF03 - Painel Principal: Exibir nome do usuário logado, botão de logout e links para as telas de produtos e estoque.
+RF04 - CRUD de Produtos: Permitir cadastrar, listar, editar e excluir produtos com validação de dados obrigatórios.
+RF05 - Busca de Produtos: Permitir filtrar a listagem de produtos por nome ou categoria.
+RF06 - Ordenação de Produtos: Listar produtos em ordem alfabética na tela de movimentação de estoque usando um algoritmo de ordenação.
+RF07 - Movimentação de Estoque: Permitir registrar entradas e saídas de produtos com data e responsável.
+RF08 - Alerta de Estoque Mínimo: Emitir alerta automático sempre que uma saída deixar o estoque abaixo do mínimo configurado.
+RF09 - Rastreabilidade: Registrar o histórico completo de movimentações identificando responsável, data e hora.

@@ -1,0 +1,4 @@
+REQUISITOS DE INFRAESTRUTURA:
+1. SGBD: MySQL 
+2. Linguagem de Programação: PHP 
+3. Sistema Operacional Utilizado no Desenvolvimento: Windows 10 

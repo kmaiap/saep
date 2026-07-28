@@ -1,0 +1,23 @@
+AMBIENTE E FERRAMENTAS DE TESTE
+
+- Navegador Web: Google Chrome 
+- Servidor Local: MySQL 
+- Ferramenta de Teste: Teste Manual 
+
+CASOS DE Teste
+
+[CT01] Login com credenciais inválidas
+- Passos: Inserir e-mail não cadastrado e clicar em Entrar.
+- Resultado Esperado: Exibir mensagem de erro e manter na tela de login.
+
+[CT02] Cadastro de Produto com dados incompletos
+- Passos: Deixar o campo "Nome" em branco e tentar salvar.
+- Resultado Esperado: Exibir alerta informando preenchimento obrigatório.
+
+[CT03] Movimentação de Saída que atinge Estoque Mínimo
+- Passos: Produto com estoque = 10, mínimo = 5. Lançar saída de 6 unidades.
+- Resultado Esperado: Estoque passa a ser 4 e o sistema exibe alerta automático de estoque mínimo.
+
+[CT04] Rastreabilidade de Histórico
+- Passos: Efetuar uma entrada de estoque e consultar a tabela de histórico.
+- Resultado Esperado: Registro exibido contendo a data informada e o nome do usuário logado.

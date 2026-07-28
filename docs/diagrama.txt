@@ -1,0 +1,21 @@
++--------------------------------+       +---------------------------------+
+|            USUARIOS            |       |            PRODUTOS             |
++--------------------------------+       +---------------------------------+
+| PK  id           INT           |<---+  | PK  id                 INT      |<---+
+|     nome         VARCHAR(100)  |    |  |     nome               VARCHAR   |    |
+|     email        VARCHAR(100)  |    |  |     categoria          VARCHAR   |    |
+|     senha        VARCHAR(255)  |    |  |     especificacoes     TEXT      |    |
++--------------------------------+    |  |     quantidade_estoque INT       |    |
+                                      |  |     estoque_minimo     INT       |    |
+                                      |  +---------------------------------+    |
+                                      |                                         |
+                                 +----+----------------------------+            |
+                                 |         MOVIMENTACOES           |            |
+                                 +---------------------------------+            |
+                                 | PK  id                INT       |            |
+                                 | FK  produto_id        INT       |------------+
+                                 | FK  usuario_id        INT       |------------+
+                                 |     tipo              ENUM      |
+                                 |     quantidade        INT       |
+                                 |     data_movimentacao DATETIME  |
+                                 +---------------------------------+
