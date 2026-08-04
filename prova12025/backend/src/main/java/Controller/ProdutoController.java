@@ -30,6 +30,12 @@ public class ProdutoController {
         return produtoRepository.findByNomeCotainingIgnoreCase(termo);
     }
 
+    @GetMapping()
+    public List<Produto> getAll() {
+        return produtoRepository.findAll();
+    }
+    
+
     //método para criar novo produto    
     @PostMapping
     public Produto salvar(@RequestBody Produto produto){
