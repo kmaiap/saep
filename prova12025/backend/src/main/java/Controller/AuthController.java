@@ -1,6 +1,5 @@
 package com.saep.backend.Controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,8 +11,11 @@ import com.saep.backend.Repository.UsuarioRepository;
 @CrossOrigin("*") // Libera Requisições do Angular
 public class AuthController {
 
-    @Autowired
-    private UsuarioRepository usuarioRepository;
+    private final UsuarioRepository usuarioRepository;
+
+    AuthController(UsuarioRepository usuarioRepository) {
+        this.usuarioRepository = usuarioRepository;
+    }
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody Usuario loginData){

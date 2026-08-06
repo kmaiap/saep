@@ -1,0 +1,14 @@
+<div class="container">
+    <h3 class="titulo">Sistema Almoxarifado</h3>
+    <form (ngSubmit)="entrar()" #loginForm="ngForm">
+        <div class="formulario">
+            <label>Login</label>
+            <input type="text" name="login" [(ngModel)]="credenciais.login" required>
+        </div>
+        <div class="formulario">
+            <label>Senha</label>
+            <input type="password" name="login" [(ngModel)]="credenciais.login" required>
+        </div>
+        <button type="submit" [disable]="loginForm.invalid">Entrar</button>
+    </form>
+</div>
