@@ -1,0 +1,13 @@
+<nav class="navbar">
+    <!-- Interpolação em Angular, inserir componentes do TS no HTML -->
+    <span class="nome">Bem-vindo, {{ nomeUsuario }}</span>
+    <button class="sair" (click)="logout()">Sair</button>
+</nav>
+
+<div class="container">
+    <h2>Painel de Controle</h2>
+    <div class="rotas">
+        <a href="/produtos">Cadastro de Produtos</a>
+        <a href="/estoque">Gestão de Estoque</a>
+    </div>
+</div>

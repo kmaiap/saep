@@ -1,0 +1,34 @@
+# Documentação de Software - Sistema de Gestão para Clínica Veterinária
+
+## 1. Identificação do Projeto
+* **Sistema:** Sistema de Gerenciamento de Clínica Veterinária (Tutores, Pets e Agendamentos)
+* **Objetivo:** Informatizar e organizar a rotina de atendimentos, cadastros e agendamentos da clínica veterinária, garantindo a segurança e proteção dos dados pessoais dos tutores em conformidade com a Lei Geral de Proteção de Dados (LGPD).
+
+---
+
+## 2. Requisitos de Infraestrutura (Ambiente Tecnológico)
+
+| Componente | Tecnologia / Especificação |
+| :--- | :--- |
+| **Sistema Gerenciador de Banco de Dados (SGBD)** | MySQL (versão 8.0 ou superior) |
+| **Linguagem de Programação (Back-end)** | Python 3.x (com microframework Flask) |
+| **Tecnologias de Front-end** | HTML5 e CSS3 |
+| **Driver de Conexão** | `mysql-connector-python` |
+
+---
+
+## 3. Requisitos Funcionais do Sistema
+
+* **RF01 - Autenticação de Usuários e Controle de Sessão:** O sistema deve validar as credenciais (login e senha) dos funcionários da clínica no banco de dados, exibir mensagem de erro em caso de falha na autenticação e criar uma sessão autenticada com tempo de expiração automático (5 minutos).
+* **RF02 - Painel Principal e Navegação:** O sistema deve exibir o nome do usuário logado na tela principal, disponibilizar acesso direto aos módulos de Tutores, Pets e Agendamentos, além de oferecer um recurso seguro para sair do sistema (logout).
+* **RF03 - Gerenciamento de Tutores e Proteção de Dados (LGPD):** O sistema deve permitir cadastrar, listar, buscar por termo (nome ou e-mail), editar e excluir tutores, garantindo que o CPF e a senha do tutor sejam armazenados de forma criptografada no banco de dados.
+* **RF04 - Gerenciamento de Pets:** O sistema deve permitir o cadastro e a listagem de pets (nome, espécie, raça e idade), associando-os obrigatoriamente a um tutor previamente cadastrado no sistema.
+* **RF05 - Gerenciamento de Agendamentos:** O sistema deve listar os agendamentos cadastrados em ordem cronológica por data e horário, exibindo todos os dados completos do tutor e do pet vinculados, além de permitir a atualização da data de um agendamento existente com persistência no banco de dados.
+
+---
+
+## 4. Requisitos Não Funcionais
+
+* **RNF01 - Segurança da Informação (LGPD):** Dados sensíveis dos tutores (CPF e senha) não podem ser gravados em texto plano no banco de dados.
+* **RNF02 - Integridade Referencial:** O banco de dados deve utilizar chaves primárias e estrangeiras para garantir a consistência entre tutores, pets e agendamentos.
+* **RNF03 - Disponibilidade Offline:** A interface deve funcionar localmente sem dependência de bibliotecas externas via internet.

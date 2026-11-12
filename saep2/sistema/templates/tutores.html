@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Gerenciamento de Tutores</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; background: #f4f7f6; }
+        .box { background: white; padding: 20px; border-radius: 8px; margin-bottom: 20px; }
+        input { padding: 8px; margin: 5px; }
+        button { padding: 8px 15px; background: #28a745; color: white; border: none; cursor: pointer; }
+        table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+        th, td { border: 1px solid #ddd; padding: 10px; text-align: left; }
+        th { background: #007bff; color: white; }
+        .btn-edit { background: #ffc107; color: black; padding: 5px 10px; text-decoration: none; border-radius: 3px; }
+        .btn-del { background: #dc3545; color: white; padding: 5px 10px; text-decoration: none; border-radius: 3px; }
+    </style>
+</head>
+<body>
+    <a href="{{ url_for('principal') }}">← Voltar ao Painel Principal</a>
+    <h1>Gerenciamento de Tutores</h1>
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}<p style="color: green;"><strong>{{ messages[0] }}</strong></p>{% endif %}
+    {% endwith %}
+
+    <div class="box">
+        <h3>Cadastrar Novo Tutor</h3>
+        <form method="POST">
+            <input type="text" name="nome" placeholder="Nome completo" required>
+            <input type="text" name="cpf" placeholder="CPF (ex: 000.000.000-00)" required>
+            <input type="text" name="telefone" placeholder="Telefone" required>
+            <input type="email" name="email" placeholder="E-mail" required>
+            <input type="password" name="senha" placeholder="Senha do Tutor" required>
+            <button type="submit" name="cadastrar">Cadastrar Tutor</button>
+        </form>
+    </div>
+
+    <div class="box">
+        <h3>Buscar e Listar Tutores</h3>
+        <form method="GET">
+            <input type="text" name="busca" value="{{ termo_busca }}" placeholder="Buscar por nome ou e-mail...">
+            <button type="submit" style="background:#007bff;">Buscar</button>
+            <a href="{{ url_for('tutores') }}">Limpar</a>
+        </form>
+
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>CPF (Descriptografado)</th>
+                <th>CPF no Banco (Criptografado)</th>
+                <th>Telefone</th>
+                <th>E-mail</th>
+                <th>Ações</th>
+            </tr>
+            {% for t in tutores %}
+            <tr>
+                <td>{{ t.id_tutor }}</td>
+                <td>{{ t.nome }}</td>
+                <td>{{ t.cpf_visivel }}</td>
+                <td><small>{{ t.cpf }}</small></td>
+                <td>{{ t.telefone }}</td>
+                <td>{{ t.email }}</td>
+                <td>
+                    <a href="{{ url_for('editar_tutor', id_tutor=t.id_tutor) }}" class="btn-edit">Editar</a>
+                    <a href="{{ url_for('excluir_tutor', id_tutor=t.id_tutor) }}" class="btn-del" onclick="return confirm('Confirma exclusão?')">Excluir</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+</html>

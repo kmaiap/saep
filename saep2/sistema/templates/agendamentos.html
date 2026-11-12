@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Gerenciamento de Agendamentos</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; background: #f4f7f6; }
+        .box { background: white; padding: 20px; border-radius: 8px; margin-bottom: 20px; overflow-x: auto; }
+        input, select { padding: 6px; margin: 3px; }
+        button { padding: 6px 12px; background: #007bff; color: white; border: none; cursor: pointer; border-radius: 3px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 15px; font-size: 14px; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background: #007bff; color: white; }
+    </style>
+</head>
+<body>
+    <a href="{{ url_for('principal') }}">← Voltar ao Painel Principal</a>
+    <h1>Gerenciamento de Agendamentos</h1>
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}<p style="color: green;"><strong>{{ messages[0] }}</strong></p>{% endif %}
+    {% endwith %}
+
+    <div class="box">
+        <h3>Novo Agendamento</h3>
+        <form method="POST">
+            <input type="date" name="data_agendamento" required>
+            <input type="time" name="horario" required>
+            <input type="text" name="procedimento" placeholder="Procedimento" required>
+            <select name="id_pet" required>
+                <option value="">-- Selecione o Pet (e Tutor) --</option>
+                {% for p in pets %}
+                    <option value="{{ p.id_pet }}">{{ p.pet_nome }} (Tutor: {{ p.tutor_nome }})</option>
+                {% endfor %}
+            </select>
+            <button type="submit" name="novo_agendamento" style="background:#28a745;">Agendar</button>
+        </form>
+    </div>
+
+    <div class="box">
+        <h3>Agendamentos Cadastrados (Ordenados por Data)</h3>
+        <table>
+            <tr>
+                <th>Data Atual</th>
+                <th>Horário</th>
+                <th>Procedimento</th>
+                <th>Dados do Pet (Nome / Espécie / Raça / Idade)</th>
+                <th>Dados do Tutor (Nome / CPF / Tel / E-mail)</th>
+                <th>Atualizar Data</th>
+            </tr>
+            {% for a in agendamentos %}
+            <tr>
+                <td><strong>{{ a.data_agendamento }}</strong></td>
+                <td>{{ a.horario }}</td>
+                <td>{{ a.procedimento }}</td>
+                <td>{{ a.pet_nome }} | {{ a.pet_especie }} | {{ a.pet_raca }} | {{ a.pet_idade }} anos</td>
+                <td>{{ a.tutor_nome }} | {{ a.tutor_cpf_visivel }} | {{ a.tutor_telefone }} | {{ a.tutor_email }}</td>
+                <td>
+                    <form method="POST" style="display:flex; align-items:center;">
+                        <input type="hidden" name="id_agendamento" value="{{ a.id_agendamento }}">
+                        <input type="date" name="nova_data" value="{{ a.data_agendamento }}" required>
+                        <button type="submit" name="atualizar_data">Salvar</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+
+</html>

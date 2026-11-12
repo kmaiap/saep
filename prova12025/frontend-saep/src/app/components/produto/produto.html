@@ -1,0 +1,44 @@
+<div class="container">
+    <button routerLink="/home" class="voltar">
+        Voltar
+    </button>
+    
+    <!-- formulário de novo produto -->
+    <div class="form">
+        <h4>Novo Produto</h4>
+        <form (ngSubmit)="salvar()">
+            <input type="text" name="nome" [(ngModel)]="produtoAtual.nome" required>
+            <input type="text" name="descricao" [(ngModel)]="produtoAtual.descricao">
+            <input type="number" name="estMin" [(ngModel)]="produtoAtual.estoqueMinimo" required>
+            <button type="submit">Salvar</button>
+        </form>
+    </div>
+
+    <!-- Tabela de Novo Produto -->
+    <div class="tabela">
+        <div class="buscar">
+            <input type="text" name="busca" [(ngModel)]="termoBusca">
+            <button class="buscar" (click)="buscar()">Buscar</button>
+        </div>
+        <table>
+            <thead><tr>
+                <th>Nome</th>
+                <th>Estoque</th>
+                <th>Minimo</th>
+                <th>Ação</th>
+            </tr></thead>
+            <tbody>
+                @for (p of produtos; track p.id){
+                <tr>
+                    <td>{{p.id}}</td>
+                    <td>{{p.nome}}</td>
+                    <td>{{p.estoqueAtual}}</td>
+                    <td>{{p.estoqueMinimo}}</td>
+                    <td><button class="excluir" (click)="excluir(p.id)">Excluir</button></td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+</div>

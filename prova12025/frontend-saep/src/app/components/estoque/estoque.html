@@ -1,0 +1,29 @@
+<div class="container">
+    <button routerLink="/home">Voltar</button>
+
+    <div class="form">
+        <h4>Registrar Movimentação</h4>
+        <form (ngSubmit)="registrarMovimentacao()">
+            <label for="">Produto</label>
+            <select name="produto" [(ngModel)]="novaMovimentacao.produto.id" required>
+                //Percorre a lista de produtos e lista no botão de seleção
+                @for (p of produtos; track p.id){
+                    <option [value] = "p.id">{{p.nome}} (Estoque: {{p.estoqueAtual}})</option>
+                }
+            </select>
+
+            <label for="">Tipo Movimentação</label>
+            <input type="radio" name="tipo" value="entrada" [(ngModel)]="novaMovimentacao.tipo" required>Entrada
+            <input type="radio" name="tipo" value="saida" [(ngModel)]="novaMovimentacao.tipo" required>Saída
+            <br><br>
+
+            <label for="">Data Operação</label>
+            <input type="date" name="data" [(ngModel)]="novaMovimentacao.dataMovimentacao" required>
+
+            <label for="">Quantidade</label>
+            <input type="number" name="qtd" [(ngModel)]="novaMovimentacao.quantidade" required>
+
+            <button type="submit">Registrar</button>
+        </form>
+    </div>
+</div>
